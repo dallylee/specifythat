@@ -32,8 +32,8 @@ Schema is a conversational spec generator for developers who struggle to turn id
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/schema.git
-   cd schema/app
+   git clone https://github.com/modryn-studio/schema.git
+   cd schema
    ```
 
 2. Install dependencies:
@@ -84,7 +84,7 @@ The app will be live at your Vercel URL.
 ## Project Structure
 
 ```
-app/
+schema/
 ├── src/
 │   ├── app/
 │   │   ├── page.tsx              # Homepage
@@ -96,13 +96,18 @@ app/
 │   ├── components/               # UI components
 │   ├── hooks/                    # React hooks
 │   └── lib/                      # Utilities & config
+├── public/                       # Static assets
+├── BUILD_LOG.md                  # Development log
+├── ROADMAP.md                    # Feature roadmap
+├── schema-spec.md                # Spec template
+└── README.md                     # This file
 ```
 
 ## Known Limitations
 
 - **No session persistence**: Refreshing the page loses all progress
 - **Single session**: Can only work on one spec at a time
-- **No export options**: Copy to clipboard only (no PDF/Word)
+- **Limited export options**: Markdown download and clipboard only (no PDF/Word)
 - **API dependency**: Requires working Anthropic API key
 
 ## Environment Variables
