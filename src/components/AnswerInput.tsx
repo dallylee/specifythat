@@ -62,7 +62,7 @@ export function AnswerInput({
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4">
+    <form onSubmit={handleSubmit} className="space-y-5">
       <div className="relative">
         <textarea
           ref={textareaRef}
@@ -71,12 +71,12 @@ export function AnswerInput({
           onKeyDown={handleKeyDown}
           placeholder="Type your answer here..."
           disabled={isLoading}
-          rows={4}
-          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 resize-none disabled:bg-gray-50 disabled:text-gray-500 text-gray-900 placeholder-gray-400"
+          rows={5}
+          className="w-full px-5 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-[#3B82F6] focus:border-[#3B82F6] resize-none disabled:bg-gray-50 disabled:text-gray-500 text-[#0A2540] placeholder-gray-400 font-medium transition-all duration-200"
         />
         {aiGeneratedAnswer && (
-          <div className="absolute top-2 right-2">
-            <span className="bg-purple-100 text-purple-700 text-xs px-2 py-1 rounded-full">
+          <div className="absolute top-3 right-3">
+            <span className="bg-gradient-to-r from-purple-500 to-purple-600 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-lg">
               ✨ AI Suggested
             </span>
           </div>
@@ -89,7 +89,7 @@ export function AnswerInput({
             type="button"
             onClick={onBack}
             disabled={isLoading}
-            className="px-4 py-2 text-gray-600 hover:text-gray-800 hover:bg-gray-100 rounded-lg transition-colors disabled:opacity-50"
+            className="px-5 py-3 text-gray-600 hover:text-[#0A2540] hover:bg-gray-100 rounded-xl transition-all duration-200 disabled:opacity-50 font-medium"
           >
             ← Back
           </button>
@@ -102,7 +102,7 @@ export function AnswerInput({
             type="button"
             onClick={handleAcceptAI}
             disabled={isLoading}
-            className="px-6 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors disabled:opacity-50 font-medium"
+            className="px-8 py-3 bg-gradient-to-r from-purple-500 to-purple-600 text-white rounded-xl hover:shadow-xl hover:shadow-purple-500/30 hover:-translate-y-0.5 transition-all duration-200 disabled:opacity-50 font-bold"
           >
             Accept & Continue
           </button>
@@ -112,7 +112,7 @@ export function AnswerInput({
               type="button"
               onClick={onIDontKnow}
               disabled={isLoading || answer.trim().length > 0}
-              className="px-4 py-2 text-purple-600 border border-purple-300 rounded-lg hover:bg-purple-50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+              className="px-5 py-3 text-purple-600 border-2 border-purple-300 rounded-xl hover:bg-purple-50 hover:border-purple-400 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed font-medium"
             >
               {isLoading ? (
                 <span className="flex items-center gap-2">
@@ -127,16 +127,16 @@ export function AnswerInput({
             <button
               type="submit"
               disabled={isLoading || !answer.trim()}
-              className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed font-medium"
+              className="group px-8 py-3 bg-gradient-to-r from-[#1E4D8B] to-[#3B82F6] text-white rounded-xl hover:shadow-xl hover:shadow-blue-500/30 hover:-translate-y-0.5 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed font-bold"
             >
-              Next →
+              Next <span className="inline-block group-hover:translate-x-1 transition-transform duration-200">→</span>
             </button>
           </>
         )}
       </div>
 
-      <p className="text-sm text-gray-500 text-center">
-        Press <kbd className="px-1.5 py-0.5 bg-gray-100 rounded text-xs">Ctrl</kbd> + <kbd className="px-1.5 py-0.5 bg-gray-100 rounded text-xs">Enter</kbd> to submit
+      <p className="text-sm text-gray-500 text-center font-medium">
+        Press <kbd className="px-2 py-1 bg-gray-100 border border-gray-300 rounded text-xs font-bold">Ctrl</kbd> + <kbd className="px-2 py-1 bg-gray-100 border border-gray-300 rounded text-xs font-bold">Enter</kbd> to submit
       </p>
     </form>
   );

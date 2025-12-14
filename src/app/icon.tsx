@@ -14,19 +14,20 @@ export default function Icon() {
     (
       <div
         style={{
-          fontSize: 28,
-          background: '#2563eb',
+          fontSize: 20,
+          background: '#0A2540',
           width: '100%',
           height: '100%',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          color: 'white',
+          color: '#3B82F6',
           fontWeight: 'bold',
-          fontFamily: 'monospace',
+          fontFamily: 'system-ui, sans-serif',
+          letterSpacing: '-0.05em',
         }}
       >
-        |
+        S
       </div>
     ),
     {

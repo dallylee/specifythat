@@ -10,7 +10,7 @@ export function LoadingSpinner({ size = 'md' }: { size?: 'sm' | 'md' | 'lg' }) {
   return (
     <div className="flex items-center justify-center">
       <div
-        className={`${sizeClasses[size]} border-2 border-gray-200 border-t-blue-600 rounded-full animate-spin`}
+        className={`${sizeClasses[size]} border-3 border-gray-200 border-t-[#3B82F6] rounded-full animate-spin`}
       />
     </div>
   );
@@ -18,9 +18,9 @@ export function LoadingSpinner({ size = 'md' }: { size?: 'sm' | 'md' | 'lg' }) {
 
 export function LoadingScreen({ message = 'Loading...' }: { message?: string }) {
   return (
-    <div className="min-h-[60vh] flex flex-col items-center justify-center gap-4">
+    <div className="min-h-[60vh] flex flex-col items-center justify-center gap-6">
       <LoadingSpinner size="lg" />
-      <p className="text-gray-600 animate-pulse">{message}</p>
+      <p className="text-gray-600 text-lg font-medium animate-pulse">{message}</p>
     </div>
   );
 }
