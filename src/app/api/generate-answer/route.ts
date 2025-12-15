@@ -63,7 +63,7 @@ The user said: "${userInput}"
 Provide a high-quality answer that they can use directly in their spec. Be specific and actionable.`;
 
     const message = await anthropic.messages.create({
-      model: 'claude-sonnet-4-20250514',
+      model: 'claude-sonnet-4-5-20250929',
       max_tokens: 1024,
       messages: [
         {
