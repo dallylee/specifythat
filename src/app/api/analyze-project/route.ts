@@ -129,8 +129,10 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Check for gibberish input
-    if (isGibberishInput(fullInput)) {
+    // Only check for gibberish if user typed something (not when they just attached a doc)
+    // If a document is attached, trust its content
+    const userTypedText = (projectDescription || '').trim();
+    if (userTypedText && !attachedDocContent && isGibberishInput(userTypedText)) {
       return NextResponse.json(
         { error: 'Please provide a meaningful project description. Your input appears to be random characters.' },
         { status: 400 }

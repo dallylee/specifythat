@@ -90,20 +90,23 @@ export function AnswerInput({
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     
-    // Validate for gibberish first (if there's text input)
-    if (answer.trim() && !attachedFile) {
-      const gibberishError = validateMeaningfulInput(answer);
-      if (gibberishError) {
-        setValidationError(gibberishError);
+    // Skip all text validation if a file is attached (file content will be validated separately)
+    if (!attachedFile) {
+      // Validate for gibberish first (if there's text input)
+      if (answer.trim()) {
+        const gibberishError = validateMeaningfulInput(answer);
+        if (gibberishError) {
+          setValidationError(gibberishError);
+          return;
+        }
+      }
+      
+      // Validate against question-specific rules
+      const error = validateAnswer(answer, validation);
+      if (error) {
+        setValidationError(error);
         return;
       }
-    }
-    
-    // Validate against question-specific rules
-    const error = validateAnswer(answer, validation);
-    if (error) {
-      setValidationError(error);
-      return;
     }
     
     // Allow submit if we have text OR a file (for Q2)
@@ -120,20 +123,23 @@ export function AnswerInput({
     if (e.key === 'Enter' && (e.metaKey || e.ctrlKey)) {
       e.preventDefault();
       
-      // Validate for gibberish first (if there's text input)
-      if (answer.trim() && !attachedFile) {
-        const gibberishError = validateMeaningfulInput(answer);
-        if (gibberishError) {
-          setValidationError(gibberishError);
+      // Skip all text validation if a file is attached (file content will be validated separately)
+      if (!attachedFile) {
+        // Validate for gibberish first (if there's text input)
+        if (answer.trim()) {
+          const gibberishError = validateMeaningfulInput(answer);
+          if (gibberishError) {
+            setValidationError(gibberishError);
+            return;
+          }
+        }
+        
+        // Validate against question-specific rules
+        const error = validateAnswer(answer, validation);
+        if (error) {
+          setValidationError(error);
           return;
         }
-      }
-      
-      // Validate against question-specific rules
-      const error = validateAnswer(answer, validation);
-      if (error) {
-        setValidationError(error);
-        return;
       }
       
       if ((answer.trim() || attachedFile) && !isLoading) {

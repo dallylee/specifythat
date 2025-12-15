@@ -9,6 +9,7 @@ import { QuestionCard } from '@/components/QuestionCard';
 import { AnswerInput } from '@/components/AnswerInput';
 import { ProgressBar } from '@/components/ProgressBar';
 import { LoadingScreen } from '@/components/LoadingSpinner';
+import { AnalysisProgress } from '@/components/AnalysisProgress';
 import { SpecDisplay } from '@/components/SpecDisplay';
 import { UnitSelectionCard } from '@/components/UnitSelectionCard';
 import { IdeationFlow } from '@/components/IdeationFlow';
@@ -265,7 +266,7 @@ export default function InterviewPage() {
     );
   }
 
-  // Show analyzing loading state
+  // Show analyzing loading state with progress bar
   if (isAnalyzing) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-blue-50/30">
@@ -281,8 +282,12 @@ export default function InterviewPage() {
           </div>
         </header>
 
-        <main className="max-w-4xl mx-auto px-4 py-8">
-          <LoadingScreen message="Analyzing your project... This may take a moment." />
+        <main className="max-w-4xl mx-auto px-4 py-16">
+          <div className="text-center mb-10">
+            <h2 className="text-2xl font-bold text-[#0A2540] mb-2">Analyzing Your Project</h2>
+            <p className="text-gray-600">This may take a moment...</p>
+          </div>
+          <AnalysisProgress isActive={isAnalyzing} />
         </main>
       </div>
     );

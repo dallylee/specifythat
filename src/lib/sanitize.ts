@@ -5,19 +5,40 @@ import { QuestionValidation } from './types';
  * Returns true if the text appears to be nonsensical
  */
 export function isGibberishInput(text: string): boolean {
-  if (!text || text.trim().length < 3) return true;
+  if (!text || text.trim().length < 2) return true;
   
   const trimmed = text.trim();
   
-  // Check for mostly random characters (low vowel ratio)
-  const vowels = trimmed.toLowerCase().match(/[aeiou]/g);
-  const vowelRatio = vowels ? vowels.length / trimmed.length : 0;
+  // Extract only alphabetic characters for vowel ratio calculation
+  // This prevents markdown/special characters from skewing the ratio
+  const lettersOnly = trimmed.toLowerCase().replace(/[^a-z]/g, '');
   
-  // Very short inputs with no vowels are likely gibberish
-  if (trimmed.length < 10 && vowelRatio < 0.1) return true;
+  // For very short inputs (like project names), be more lenient
+  // Allow any input with at least 2 letters that has vowels
+  if (lettersOnly.length < 10) {
+    // Allow if there's substantial content (like a doc with formatting)
+    if (trimmed.length >= 50) return false;
+    
+    // For short text, just check if it has at least one vowel
+    const hasVowel = /[aeiou]/i.test(lettersOnly);
+    if (hasVowel && lettersOnly.length >= 2) return false;
+    
+    // No vowels and very short - could still be valid acronym
+    if (lettersOnly.length >= 2 && lettersOnly.length <= 6) return false;
+    
+    // Single letter or no letters with short content is suspicious
+    return lettersOnly.length < 2;
+  }
+  
+  // Check for mostly random characters (low vowel ratio in letters)
+  const vowels = lettersOnly.match(/[aeiou]/g);
+  const vowelRatio = vowels ? vowels.length / lettersOnly.length : 0;
+  
+  // Medium-length inputs with very few vowels are likely gibberish
+  if (lettersOnly.length < 20 && vowelRatio < 0.1) return true;
   
   // Longer text should have at least some vowels (allow for acronyms etc.)
-  if (trimmed.length >= 10 && vowelRatio < 0.08) return true;
+  if (lettersOnly.length >= 20 && vowelRatio < 0.08) return true;
   
   // Check for excessive repeated patterns (like "asdfasdfasdf" or "aaaaaa")
   const hasRepeatedPattern = /(.{2,})\1{2,}/.test(trimmed.toLowerCase());
