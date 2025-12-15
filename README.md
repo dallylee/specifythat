@@ -13,6 +13,10 @@ SpecifyThat is a conversational spec generator for developers who struggle to tu
 
 - 🎯 **13 targeted questions** mapped to a proven spec structure
 - 🤖 **AI-powered gap filling** - click "I don't know" for expert suggestions
+- 🧠 **Ideation mode** - 3-step discovery wizard when you're not sure what to build
+- 🔍 **Multi-unit detection** - AI analyzes complex projects and lets you spec one phase at a time
+- 📎 **File upload support** - attach .txt or .md files (up to 10MB) for your project description
+- ✅ **Input validation** - smart sanitization and gibberish detection
 - 📋 **Copy-ready output** - paste into ChatGPT, Claude, or Cursor
 - 📱 **Mobile-responsive** - works on any device
 - 🔒 **No login required** - just start building
@@ -45,6 +49,11 @@ SpecifyThat is a conversational spec generator for developers who struggle to tu
    ```bash
    npm install
    ```
+   
+   Key dependencies:
+   - `@anthropic-ai/sdk` - AI provider
+   - `lucide-react` - Icon system
+   - `next` - Framework
 
 3. Set up environment variables:
    ```bash
@@ -80,7 +89,10 @@ The app will be live at your Vercel URL.
 
 1. Click "Start New Spec" on the homepage
 2. Answer each question about your project
-3. If you're unsure, click "I don't know" for AI suggestions
+   - **Don't have a clear idea?** Click "I don't know" on Q2 for the ideation wizard
+   - **Have a doc?** Attach .txt or .md files (up to 10MB) for Q2
+   - **Complex project?** AI will detect multiple buildable units and let you pick one
+3. If you're unsure on other questions, click "I don't know" for AI suggestions
 4. Review and edit AI suggestions as needed
 5. Complete all 13 questions
 6. Click "Generate My Spec"
