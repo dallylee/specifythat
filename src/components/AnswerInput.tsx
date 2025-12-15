@@ -211,12 +211,12 @@ export function AnswerInput({
           disabled={isLoading}
           rows={5}
           maxLength={validation?.maxLength ? validation.maxLength + 10 : undefined}
-          className={`w-full px-5 py-4 border-2 rounded-xl focus:ring-2 focus:ring-[#3B82F6] focus:border-[#3B82F6] resize-none disabled:bg-gray-50 disabled:text-gray-500 text-[#0A2540] placeholder-gray-400 font-medium transition-all duration-200 ${
+          className={`w-full px-5 py-4 border-2 rounded-xl focus:ring-2 focus:ring-[#3B82F6] focus:border-[#3B82F6] resize-y disabled:bg-gray-50 disabled:text-gray-500 text-[#0A2540] placeholder-gray-400 font-medium transition-all duration-200 ${
             validationError ? 'border-red-400 focus:border-red-400 focus:ring-red-400' : 'border-gray-200'
           }`}
         />
         {aiGeneratedAnswer && (
-          <div className="absolute top-3 right-3">
+          <div className="absolute -top-3 right-3">
             <span className="bg-gradient-to-r from-purple-500 to-purple-600 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-lg flex items-center gap-1">
               <Sparkles className="w-3 h-3" /> AI Suggested
             </span>
