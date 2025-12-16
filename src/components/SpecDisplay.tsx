@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
+import { PartyPopper, Check, Lightbulb } from 'lucide-react';
 
 interface SpecDisplayProps {
   spec: string;
@@ -68,8 +69,8 @@ export function SpecDisplay({ spec, onStartOver, projectName = 'project' }: Spec
     <div className="space-y-8">
       <div className="flex flex-col sm:flex-row gap-6 justify-between items-start sm:items-center">
         <div>
-          <h1 className="text-3xl md:text-4xl font-bold text-[#0A2540]">
-            Your Spec is Ready! 🎉
+          <h1 className="text-3xl md:text-4xl font-bold text-[#0A2540] flex items-center gap-2">
+            Your Spec is Ready! <PartyPopper className="w-8 h-8 text-purple-600" />
           </h1>
           <p className="text-gray-600 mt-2 text-lg">
             Copy it and paste into ChatGPT, Claude, or your favorite AI to start building.
@@ -87,7 +88,11 @@ export function SpecDisplay({ spec, onStartOver, projectName = 'project' }: Spec
                     : 'bg-gradient-to-r from-[#1E4D8B] to-[#3B82F6] text-white hover:shadow-xl hover:shadow-blue-500/30'
                 }`}
               >
-                {copied ? '✓ Copied!' : 'Copy'}
+                {copied ? (
+                  <span className="flex items-center gap-1.5">
+                    <Check className="w-4 h-4" /> Copied!
+                  </span>
+                ) : 'Copy'}
               </button>
               <button
                 onClick={() => setDropdownOpen(!dropdownOpen)}
@@ -140,9 +145,13 @@ export function SpecDisplay({ spec, onStartOver, projectName = 'project' }: Spec
           <span className="text-sm text-gray-300 font-mono font-medium">project-spec.md</span>
           <button
             onClick={handleCopy}
-            className="text-gray-300 hover:text-white transition-colors text-sm font-medium"
+            className="text-gray-300 hover:text-white transition-colors text-sm font-medium flex items-center gap-1.5"
           >
-            {copied ? '✓ Copied' : 'Copy'}
+            {copied ? (
+              <>
+                <Check className="w-4 h-4" /> Copied
+              </>
+            ) : 'Copy'}
           </button>
         </div>
         
@@ -154,7 +163,9 @@ export function SpecDisplay({ spec, onStartOver, projectName = 'project' }: Spec
       </div>
 
       <div className="bg-gradient-to-br from-blue-50 to-purple-50 border-2 border-blue-200 rounded-2xl p-6 md:p-8">
-        <h3 className="font-bold text-[#0A2540] mb-4 text-xl">💡 What's Next?</h3>
+        <h3 className="font-bold text-[#0A2540] mb-4 text-xl flex items-center gap-2">
+          <Lightbulb className="w-6 h-6 text-yellow-600" /> What's Next?
+        </h3>
         <ol className="text-gray-700 space-y-2 list-decimal list-inside text-base font-medium">
           <li>Copy the spec above</li>
           <li>Paste it into ChatGPT, Claude, or Cursor</li>
